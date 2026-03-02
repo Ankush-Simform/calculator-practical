@@ -100,3 +100,28 @@ body.dark-mode {
 body.dark-mode .calculator {
   background-color: #444;
 }
+.history {
+  padding: 10px;
+  border-left: 1px solid #ccc;
+  max-width: 200px;
+}
+
+#history-list {
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+.history-item {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.history-item:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.dark-mode .history-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
