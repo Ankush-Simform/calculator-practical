@@ -11,17 +11,22 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
   </head>
   <body>
     <center>
       <div class="calculator">
+        <div class="container">
         <input
           type="text"
-          dir="rtl"
           placeholder="0"
           id="input"
           style="font-size: xx-large"
-        />
+          readonly
+        /></div>
         <div class="deg">
           <button class="btn ">DEG</button>
           <button class="btn ">F-E</button>
@@ -36,27 +41,28 @@
           <button class="btn ">MS</button>
 
         </div>
-        <div class="advanceFunction1">
-            <select value="trignometry">
-                <option value="sin">&#9727 Trignometry</option>
-                 <option value="sin">Sin</option>
-                 <option value="sin">Cos</option>
-                 <option value="sin">Tan</option>
-                 <option value="sin">Cos</option>
-                 <option value="sin">Sec</option>
-                 <option value="sin">Cose</option>
-            </select>
-            <select value="function">
-                <option value="sin">&#10765 function</option>
-            </select>
-        </div>
+          <div class="advanceFunction1">
+              <select value="trignometry">
+                  <option selected disabled>&#9727 Trignometry</option>
+                  <option value="sin">Sin</option>
+                  <option value="cos">Cos</option>
+                  <option value="tan">Tan</option>
+                  <option value="coses">Coses</option>
+                  <option value="sec">Sec</option>
+                  <option value="cot">Cot</option>
+              </select>
+              <select value="function">
+                  <option value="sin">&#10765 function</option>
+              </select>
+          </div>
 
         <div class="basicOperations">
-          <button value="sec" class="btn border border-1">2<sup>nd</sup></button>
+          <button class="btn border border-1">2<sup>nd</sup></button>
           <button class="btn border border-1">π</button>
           <button class="btn border border-1">e</button>
           <button class="btn border border-1">C</button>
-          <button class="btn border border-1">x </button>
+          <button class="btn border border-1"><i class="fa-solid fa-delete-left"></i>
+  </button>
           <button class="btn border border-1">x<sup>2</sup></button>
 
           <button class="btn border border-1">1/x</button>
@@ -90,6 +96,14 @@
           <button class="btn border border-1 bg-info">=</button>
         </div>
       </div>
+      <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>   
+      <div class="history">
+        History
+        <div id="history-list">
+
+        </div>
+      </div>
     </center>
+    <script src="script.js" defer></script>
   </body>
 </html>
