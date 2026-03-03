@@ -7,49 +7,66 @@ const buttons = document.querySelectorAll(".btn");
 const trigno = document.querySelector("select[value=trignometry]");
 const functions = document.querySelector("select[value=function]");
 
+
+ document.getElementById("input").addEventListener("keydown",
+    function(e){
+      if (e.key.length === 1) {
+    myCalculator.append(e.key);
+  }
+    });
+ 
 document.addEventListener("DOMContentLoaded", () => {
-  myCalculator.renderHistory();
-  
+  myCalculator.renderHistory(); 
+
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const btnText = button.innerText;
-      if (btnText == "=") {
-        myCalculator.calc();
-      } else if (btnText == "C") {
-        myCalculator.clear();
-      } else if (btnText == "x2") {
-        myCalculator.square();
-      } else if (btnText == "n!") {
-        myCalculator.append("!");
-      } else if (btnText === "MS") {
-        myCalculator.memoryStr();
-      } else if (btnText === "MC") {
-        myCalculator.memoryClr();
-      } else if (btnText === "MR") {
-        myCalculator.memoryRec();
-      } else if (btnText === "M+") {
-        myCalculator.memoryAdd();
-      } else if (btnText === "M-") {
-        myCalculator.memorySub();
-      } else if (btnText === "+/-") {
-        myCalculator.changeSign();
-      } else if (btnText === "F-E") {
-        myCalculator.display.value = handleFE(myCalculator.display.value);
-    
-      } else {
-        myCalculator.append(btnText);
+      switch (btnText) {
+        case "=":
+          myCalculator.calc();
+          break;
+        case "C":
+          myCalculator.clear();
+          break;
+        case "x2":
+          myCalculator.square();
+          break;
+        case "n!":
+          myCalculator.append("!");
+          break;
+        case "MS":
+          myCalculator.memoryStr();
+          break;
+        case "MC":
+          myCalculator.memoryClr();
+          break;
+        case "MR":
+          myCalculator.memoryRec();
+          break;
+        case "M+":
+          myCalculator.memoryAdd();
+          break;
+        case "M-":
+          myCalculator.memorySub();
+          break;
+        case "+/-":
+          myCalculator.changeSign();
+          break;
+        case "F-E":
+          myCalculator.display.value = handleFE(myCalculator.display.value);
+          break;
+        default:
+          myCalculator.append(btnText);
+          break;
       }
     });
   });
-
   document.getElementById("clearHistory").addEventListener("click", () => {
     evalHistory.clear();
     myCalculator.renderHistory();
   });
-
   const spaceBtn = document.querySelector("#backspace-btn");
   const disp = document.querySelector("#input");
-
   spaceBtn.addEventListener("click", () => {
     if (disp.value.length > 0) {
       disp.value = disp.value.slice(0, -1);

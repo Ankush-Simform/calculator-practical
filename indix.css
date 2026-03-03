@@ -12,9 +12,6 @@ body {
   min-height: 100vh;
   font-family: sans-serif;
 }
-.container {
-  /* direction: rtl; */
-}
 
 .calculator {
   display: flex;
@@ -79,7 +76,7 @@ select {
 }
 
 .btn-info {
-  background-color: #0dcaf0 !important    ;
+  background-color: #0dcaf0 ;
   color: white;
 }
 

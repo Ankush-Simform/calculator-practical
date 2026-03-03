@@ -25,5 +25,4 @@ export function calculatedHistory() {
     },
   };
 }
-
 export const evalHistory = calculatedHistory();

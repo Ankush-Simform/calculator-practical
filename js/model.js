@@ -1,6 +1,9 @@
 import { evalHistory, getValue } from './db.js';
 
 let isExponential = false;
+let calculator;
+const TRIGFUNCTIONS = ["sin", "cos", "tan", "cosec", "sec", "cot"];
+const CALFUNCTIONS = ["floor", "ceil", "random"];
 
 export function handleFE(currentValue) {
   const num = parseFloat(currentValue);
@@ -11,15 +14,16 @@ export function handleFE(currentValue) {
   }
 }
 
+
 export class Calculator {
   constructor(displayElement) {
     this.display = displayElement;
-    this.memory = 0;
+    this.memory = "";
     this.isDegreeMode = true;
   }
 
   memoryClr() {
-    this.memory = 0;
+    this.memory = "";
     this.display.value = "";
   }
   memoryRec() {
@@ -36,10 +40,16 @@ export class Calculator {
     this.display.value = "";
   }
   memoryStr() {
+
     if (this.display.value === "") return;
     try {
       const currentValue = eval(this.display.value);
       this.memory = parseFloat(currentValue);
+     console.log(currentValue);
+     if(currentValue==0){
+      this.memory="";
+      console.log(currentValue);
+     }
       this.display.value = "";
     } catch (e) {
       this.display.value = "Error";
@@ -81,39 +91,60 @@ export class Calculator {
   }
 
   append(value) {
-    if (value === "x") value = "*";
-    if (value === "÷") value = "/";
-    if (value === "n!") value = "!";
-    if (value === "π") value = "3.14";
-    if (value === "e") value = "2.71828";
 
-    if (value === "sin") value = "sin(";
-    if (value === "mod") value = "/";
-    if (value === "1/x") {
-      this.display.value = "1/ " + this.display.value + "";
-      return;
+    switch(value){
+      case "x":
+        value="*";
+        break;
+      case "÷":
+        value="/"
+        break;
+      case "n!":
+        value="!"
+        break;
+      case "π":
+        value="3.14"
+        break;
+      case "e":
+        value="2.7182"
+        break; 
+        case "sin":
+        value="sin("
+        break;
+          case "e":
+        value=""
+        break;
+          case "e":
+        value=""
+        break;
+          case "sin":
+        value="sin("
+        break;
+        case "mod":
+        value="/";
+        break;
+         case "mod":
+        value="/";
+        break; case "1/x":
+        value="/";
+        break; case "2√x":
+        value="2√";
+        break; case "log":
+        value="log(";
+        break;
+         case "ln":
+        value="ln(";
+        break; 
+        case "xy":
+        value="**";
+        break; 
+        case "10x":
+        value="10**";
+        break; 
+        case "exp":
+          value="**"
+          break;   
     }
-    if (value === "2√x") {
-      this.display.value = "2√(" + this.display.value + "";
-      return;
-    }
-    if (value === "log") {
-      this.display.value += "log(";
-      return;
-    }
-    if (value === "ln") {
-      this.display.value += "ln(";
-      return;
-    }
-    if (value === "xy" || value === "x^y") {
-      this.display.value += "**";
-      return;
-    }
-    if (value === "10x" || value === "10^x") {
-      this.display.value += "10**";
-      return;
-    }
-
     if (value === "|x|") {
       this.display.value = "|" + this.display.value + "|";
       return;
@@ -145,10 +176,13 @@ export class Calculator {
         return Math.log(parseFloat(number));
       });
     }
+    if(exp.includes("|")){
+      exp=exp.replace(/\|(.*?)\|/g, "Math.abs($1)");
+    }
 
-    const trigFunctions = ["sin", "cos", "tan", "cosec", "sec", "cot"];
+    const TRIGFUNCTIONS = ["sin", "cos", "tan", "cosec", "sec", "cot"];
 
-    trigFunctions.forEach((func) => {
+    TRIGFUNCTIONS.forEach((func) => {
       if (exp.includes(`${func}(`)) {
         const regex = new RegExp(`${func}\\(([\\d.]+)\\)`, "g");
 
@@ -170,19 +204,16 @@ export class Calculator {
     CALFUNCTIONS.forEach((fun) => {
       const regex = new RegExp(`${fun}\\(([^()]+)\\)`, "g");
 
-      while (exp.includes(`${fun}(`)) {
+      if(exp.includes(`${fun}(`)) {
         exp = exp.replace(regex, (match, capturedValue) => {
           const num = parseFloat(capturedValue);
-          if (isNaN(num) && fun !== "random") return "0";
           switch (fun) {
             case "floor":
               return Math.floor(num);
             case "ceil":
               return Math.ceil(num);
             case "random":
-              return isNaN(num) ? Math.random() : Math.random() * num;
-            case "abs":
-              return Math.abs(num);
+              return  Math.random(num) ;
             default:
               return match;
           }
