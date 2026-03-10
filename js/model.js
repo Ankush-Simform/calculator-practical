@@ -1,4 +1,4 @@
-import { evalHistory, getValue } from './db.js';
+import { evalHistory, getValue } from "./db.js";
 
 let isExponential = false;
 let calculator;
@@ -13,7 +13,6 @@ export function handleFE(currentValue) {
     return num.toExponential();
   }
 }
-
 
 export class Calculator {
   constructor(displayElement) {
@@ -40,16 +39,14 @@ export class Calculator {
     this.display.value = "";
   }
   memoryStr() {
-
     if (this.display.value === "") return;
     try {
       const currentValue = eval(this.display.value);
       this.memory = parseFloat(currentValue);
-     console.log(currentValue);
-     if(currentValue==0){
-      this.memory="";
-      console.log(currentValue);
-     }
+
+      if (currentValue == 0) {
+        this.memory = "";
+      }
       this.display.value = "";
     } catch (e) {
       this.display.value = "Error";
@@ -85,65 +82,67 @@ export class Calculator {
       };
     });
   }
-  
+
   clear() {
     if (this.display) this.display.value = "";
   }
 
   append(value) {
-
-    switch(value){
+    switch (value) {
       case "x":
-        value="*";
+        value = "*";
         break;
       case "÷":
-        value="/"
+        value = "/";
         break;
       case "n!":
-        value="!"
+        value = "!";
         break;
       case "π":
-        value="3.14"
+        value = "3.14";
         break;
       case "e":
-        value="2.7182"
-        break; 
-        case "sin":
-        value="sin("
+        value = "2.7182";
         break;
-          case "e":
-        value=""
+      case "sin":
+        value = "sin(";
         break;
-          case "e":
-        value=""
+      case "e":
+        value = "";
         break;
-          case "sin":
-        value="sin("
+      case "e":
+        value = "";
         break;
-        case "mod":
-        value="/";
+      case "sin":
+        value = "sin(";
         break;
-         case "mod":
-        value="/";
-        break; case "1/x":
-        value="/";
-        break; case "2√x":
-        value="2√";
-        break; case "log":
-        value="log(";
+      case "mod":
+        value = "/";
         break;
-         case "ln":
-        value="ln(";
-        break; 
-        case "xy":
-        value="**";
-        break; 
-        case "10x":
-        value="10**";
-        break; 
-        case "exp":
-          value="**"
-          break;   
+      case "mod":
+        value = "/";
+        break;
+      case "1/x":
+        value = "/";
+        break;
+      case "2√x":
+        value = "2√";
+        break;
+      case "log":
+        value = "log(";
+        break;
+      case "ln":
+        value = "ln(";
+        break;
+      case "xy":
+        value = "**";
+        break;
+      case "10x":
+        value = "10**";
+        break;
+      case "exp":
+        value = "**";
+        break;
     }
     if (value === "|x|") {
       this.display.value = "|" + this.display.value + "|";
@@ -176,8 +175,8 @@ export class Calculator {
         return Math.log(parseFloat(number));
       });
     }
-    if(exp.includes("|")){
-      exp=exp.replace(/\|(.*?)\|/g, "Math.abs($1)");
+    if (exp.includes("|")) {
+      exp = exp.replace(/\|(.*?)\|/g, "Math.abs($1)");
     }
 
     const TRIGFUNCTIONS = ["sin", "cos", "tan", "cosec", "sec", "cot"];
@@ -204,7 +203,7 @@ export class Calculator {
     CALFUNCTIONS.forEach((fun) => {
       const regex = new RegExp(`${fun}\\(([^()]+)\\)`, "g");
 
-      if(exp.includes(`${fun}(`)) {
+      if (exp.includes(`${fun}(`)) {
         exp = exp.replace(regex, (match, capturedValue) => {
           const num = parseFloat(capturedValue);
           switch (fun) {
@@ -213,7 +212,7 @@ export class Calculator {
             case "ceil":
               return Math.ceil(num);
             case "random":
-              return  Math.random(num) ;
+              return Math.random(num);
             default:
               return match;
           }
