@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="indix.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <link rel="icon" href="images/favicon1.png">
+  </head>
+  <body>
+    <center>
+      <div class="calculator">
+        <div class="container">
+        <input
+          type="text"
+          placeholder="0"
+          id="input"
+          readonly
+          style="font-size: xx-large"
+       
+          readonly
+        /></div>
+        <div class="deg">
+          <button class="btn ">DEG</button>
+          <button class="btn ">F-E</button>
+        </div>
+        
+
+        <div class="advanceOperations">
+          <button class="btn text-muted">MC</button>
+          <button class="btn text-muted">MR</button>
+          <button class="btn ">M+</button>
+          <button class="btn ">M-</button>
+          <button class="btn ">MS</button>
+
+        </div>
+          <div class="advanceFunction1">  
+              <select value="trignometry">
+                  <option selected disabled>&#9727 Trignometry</option>
+                  <option value="sin">Sin</option>
+                  <option value="cos">Cos</option>
+                  <option value="tan">Tan</option>
+                  <option value="coses">Cosec</option>
+                  <option value="sec">Sec</option>  
+                  <option value="cot">Cot</option>  
+              </select>
+              <select value="function">
+                  <option selected disabled value="sin">&#10765 function</option>
+                   <option value="floor">&lfloor;X&rfloor;</option>
+                  <option value="ceil">&lceil;X&rceil;</option>
+                  <option value="random">random</option>
+              </select>
+          </div>
+
+        <div class="basicOperations">
+          <button class="btn border border-1">2<sup>nd</sup></button>
+          <button class="btn border border-1">π</button>
+          <button class="btn border border-1">e</button>
+          <button class="btn border border-1">C</button>
+          <button id="backspace-btn" class="btn border border-1"><i i class="fa-solid fa-delete-left"></i>
+  </button> 
+          <button class="btn border border-1">x<sup>2</sup></button>
+
+          <button class="btn border border-1">1/x</button>
+          <button class="btn border border-1">|x|</button>
+          <button class="btn border border-1">exp</button>
+          <button class="btn border border-1">mod</button>
+          <button class="btn border border-1">2√x</button>
+          <button class="btn border border-1">(</button>
+          <button class="btn border border-1">)</button>
+          <button class="btn border border-1">n!</button>
+          <button class="btn border border-1"><strong>÷</strong></button>
+          <button class="btn border border-1">x<sup>y</sup></button>
+          <button class="btn border border-1 bg-white">7</button>
+          <button class="btn border border-1 bg-white">8</button>
+          <button class="btn border border-1 bg-white">9</button>
+          <button class="btn border border-1">x</button>
+          <button class="btn border border-1">10<sup>x</sup></button>
+          <button class="btn border border-1 bg-white">4</button>
+          <button class="btn border border-1 bg-white">5</button>
+          <button class="btn border border-1 bg-white">6</button>
+          <button class="btn border border-1">-</button>
+          <button class="btn border border-1">log</button>
+          <button value="one" class="btn border border-1 bg-white">1</button>
+          <button class="btn border border-1 bg-white">2</button>
+          <button class="btn border border-1 bg-white">3</button>
+          <button class="btn border border-1" onclick="">+</button>
+          <button class="btn border border-1">ln</button>
+          <button class="btn border border-1 bg-white">+/-</button>
+          <button class="btn border border-1 bg-white">0</button>
+          <button class="btn border border-1 bg-white">.</button>
+          <button class="btn border border-1 bg-info">=</button>
+        </div>
+      </div>
+      <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>   
+      <div class="history">
+        History
+        <div id="history-list">
+        
+
+        </div>
+       
+      </div>
+       <button id="clearHistory">clearHistory</button>
+    </center>
+    <script type="module" src="js/main.js" defer></script>
+  </body>
+</html>
